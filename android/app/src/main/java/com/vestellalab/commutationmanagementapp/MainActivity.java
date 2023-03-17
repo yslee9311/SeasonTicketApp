@@ -1,4 +1,4 @@
-package com.commutationmanagementapp;
+package com.vestellalab.commutationmanagementapp;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

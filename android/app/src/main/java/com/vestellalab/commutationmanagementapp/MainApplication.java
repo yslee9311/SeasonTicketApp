@@ -1,4 +1,4 @@
-package com.commutationmanagementapp;
+package com.vestellalab.commutationmanagementapp;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
