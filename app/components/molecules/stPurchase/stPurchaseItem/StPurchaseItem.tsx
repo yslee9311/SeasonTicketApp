@@ -14,7 +14,7 @@ interface Item {
     marginTop: number,
 };
 
-const SeasonTicketStatusItem = ({
+const StPurchaseItem = ({
     title = '',
     number = 0,
     func = () => { },
@@ -55,4 +55,4 @@ const SeasonTicketStatusItemLayout = styled.TouchableOpacity<{ marginTop?: numbe
     margin-top: ${props => props.marginTop}px;
 `;
 
-export default SeasonTicketStatusItem;
+export default StPurchaseItem;

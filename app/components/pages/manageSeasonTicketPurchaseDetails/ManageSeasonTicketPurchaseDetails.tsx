@@ -8,44 +8,35 @@ import {
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import styled from 'styled-components/native';
 
-import colors from '../../../../common/values/colors';
+import colors from '../../../common/values/colors';
 
-import DefaultText from '../../../atoms/texts/defaultText';
-import SeasonTicketPurchaseContainer from '../../../organisms/manageSeasonTicketPurchase/seasonTicketPurchaseContainer';
+import DefaultText from '../../atoms/texts/defaultText';
+import SeasonTicketPurchaseContainer from '../../organisms/manageSeasonTicketPurchase/seasonTicketPurchaseContainer';
 
 type MyProps = {
     navigation: any
+    route: any
 };
-type MyState = {
-    purchaseList: Object
-};
+type MyState = {};
 
 type passData = {
     label: string
     price: number
 };
 
-export default class ManageSeasonTicketPurchase extends React.Component<MyProps, MyState> {
+export default class ManageSeasonTicketPurchaseDetails extends React.Component<MyProps, MyState> {
+
     constructor(props: any) {
         super(props);
         this.state = {
-            purchaseList: [
-                {
-                    label: "월정기권",
-                    price: 55000,
-                    func: (data: passData) => { this.props.navigation.navigate('ManageSeasonTicketPurchaseDetails', data)},
-                },
-                {
-                    label: "추가월정기권",
-                    price: 88000,
-                    func: (data: passData) => { this.props.navigation.navigate('ManageSeasonTicketPurchaseDetails', data)},
-                },
-            ]
         };
+    }
+    componentDidMount(): void {
+        console.log(this.props.route.params);
+        
     }
 
     render() {
-        const { purchaseList } = this.state
         return (
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {Platform.OS === 'ios' ? (
@@ -62,9 +53,9 @@ export default class ManageSeasonTicketPurchase extends React.Component<MyProps,
                         color={colors.white}
                     />
                 </StyledSummaryHeader>
-                <StyledSummaryContents>
+                {/* <StyledSummaryContents>
                     <SeasonTicketPurchaseContainer purchaseList={purchaseList} />
-                </StyledSummaryContents>
+                </StyledSummaryContents> */}
             </View>
         )
     }

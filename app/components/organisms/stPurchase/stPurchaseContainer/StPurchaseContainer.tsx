@@ -6,14 +6,14 @@ import styled from 'styled-components/native';
 import colors from '../../../../common/values/colors';
 
 import DefaultText from '../../../atoms/texts/defaultText';
-import SeasonTicketItem from '../../../molecules/manageSeasonTicketPurchase/seasonTicketItem'
+import StPurchaseItem from '../../../molecules/stPurchase/stPurchaseItem';
 
 type MyProps = {
     purchaseList: Object
 };
 type MyState = {};
 
-export default class SeasonTicketPurchaseContainer extends React.Component<MyProps, MyState> {
+export default class StPurchaseContainer extends React.Component<MyProps, MyState> {
     render() {
         const { purchaseList } = this.props
         return (
@@ -28,7 +28,7 @@ export default class SeasonTicketPurchaseContainer extends React.Component<MyPro
                 <View>
                     {Object.values(purchaseList).map((item, index) => {
                         return (
-                            <SeasonTicketItem
+                            <StPurchaseItem
                                 key={item.label}
                                 title={item.label}
                                 number={item.price}

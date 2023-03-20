@@ -47,9 +47,8 @@ export default class StManage extends React.Component<MyProps, MyState> {
             seasonTicketMenu: {
                 "purchase": {
                     text: "정기권 구매",
-                    func: () => { 
-                        const { navigation } = this.props;
-                        navigation.navigate('ManageSeasonTicketPurchase', {})
+                    func: () => {
+                        this.props.navigation.navigate('StPurchase', {})
                     }
                 },
                 "extension": {
