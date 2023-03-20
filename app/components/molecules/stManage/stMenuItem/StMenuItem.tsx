@@ -13,7 +13,7 @@ interface Item {
     borderTop: number,
 };
 
-const SeasonTicketMenuItem = ({
+const StMenuItem = ({
     title = '',
     func = () => {},
     borderTop = 0,
@@ -43,4 +43,4 @@ const SeasonTicketMenuItemLayout = styled.TouchableOpacity<{ borderTopWidth?: nu
     border-top-width: ${props => props.borderTopWidth}px;
 `;
 
-export default SeasonTicketMenuItem;
+export default StMenuItem;

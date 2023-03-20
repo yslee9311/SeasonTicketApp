@@ -5,14 +5,14 @@ import styled from 'styled-components/native';
 import colors from '../../../../common/values/colors';
 
 import DefaultText from '../../../atoms/texts/defaultText';
-import SeasonTicketStatusItem from '../../../molecules/manageSeasonTicket/seasonTicketStatusItem'
+import StStatusItem from '../../../molecules/stManage/stStatusItem';
 
 type MyProps = {
     seasonTicketStatus: Object
 };
 type MyState = {};
 
-export default class SeasonTicketStatusContainer extends React.Component<MyProps, MyState> {
+export default class StStatusContainer extends React.Component<MyProps, MyState> {
     render() {
         const { seasonTicketStatus } = this.props
         return (
@@ -28,7 +28,7 @@ export default class SeasonTicketStatusContainer extends React.Component<MyProps
                     {Object.values(seasonTicketStatus).map((item, index) => {
                         // let data: IChartFilter = seasonTicketStatus[item] // typescript 검토 필요
                         return (
-                            <SeasonTicketStatusItem
+                            <StStatusItem
                                 key={item.text}
                                 title={item.text}
                                 number={item.number}

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
-import ManageSeasonTicket from '../components/pages/manageSeasonTicket';
+import StManage from '../components/pages/stManage';
 import ManageSeasonTicketPurchase from '../components/pages/purchase/manageSeasonTicketPurchase';
 
 const Stack = createNativeStackNavigator();
@@ -17,14 +17,14 @@ const SetOfStack = (value: { prop: { initialRouteName: string | undefined; }; })
         <Stack.Navigator
             initialRouteName={value.prop.initialRouteName}
             screenOptions={horizontalAnimation}>
-            <Stack.Screen name="ManageSeasonTicket" component={ManageSeasonTicket} />
+            <Stack.Screen name="StManage" component={StManage} />
             <Stack.Screen name="ManageSeasonTicketPurchase" component={ManageSeasonTicketPurchase} />
         </Stack.Navigator>
     );
 };
 
 export const createRootNavigator = () => {
-    let initialRouteName = 'ManageSeasonTicket'
+    let initialRouteName = 'StManage'
 
     return (
         <NavigationContainer>

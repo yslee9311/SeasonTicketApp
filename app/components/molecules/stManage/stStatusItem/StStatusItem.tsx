@@ -12,7 +12,7 @@ interface Item {
     paddingTop: number,
 };
 
-const SeasonTicketStatusItem = ({
+const StStatusItem = ({
     title = '',
     number = 0,
     paddingTop = 0,
@@ -41,4 +41,4 @@ const SeasonTicketStatusItemLayout = styled.View<{ paddingTop?: number }>`
     padding-top: ${props => props.paddingTop}px;
 `;
 
-export default SeasonTicketStatusItem;
+export default StStatusItem;

@@ -5,13 +5,13 @@ import styled from 'styled-components/native';
 import colors from '../../../../common/values/colors';
 
 import DefaultText from '../../../atoms/texts/defaultText';
-import SeasonTicketMenuItem from '../../../molecules/manageSeasonTicket/seasonTicketMenuItem'
+import StMenuItem from '../../../molecules/stManage/stMenuItem';
 
 interface Container {
     seasonTicketMenu: Object
 };
 
-const SeasonTicketMenuContainer = ({
+const StMenuContainer = ({
     seasonTicketMenu = {},
 }: Container) => {
     return (
@@ -26,7 +26,7 @@ const SeasonTicketMenuContainer = ({
             <SeasonTicketMenuContents>
                 {Object.values(seasonTicketMenu).map((item, index) => {
                     return (
-                        <SeasonTicketMenuItem
+                        <StMenuItem
                             key={item.text}
                             title={item.text}
                             func={item.func}
@@ -49,4 +49,4 @@ const SeasonTicketMenuContents = styled.View`
     border-bottom-color: ${colors.black};
 `;
 
-export default SeasonTicketMenuContainer;
+export default StMenuContainer;

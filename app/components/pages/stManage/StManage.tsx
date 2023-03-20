@@ -11,8 +11,8 @@ import styled from 'styled-components/native';
 import colors from '../../../common/values/colors';
 
 import DefaultText from '../../atoms/texts/defaultText';
-import SeasonTicketStatusContainer from '../../organisms/manageSeasonTicket/seasonTicketStatusContainer';
-import SeasonTicketMenuContainer from '../../organisms/manageSeasonTicket/seasonTicketMenuContainer';
+import StStatusContainer from '../../organisms/stManage/stStatusContainer';
+import StMenuContainer from '../../organisms/stManage/stMenuContainer';
 
 type MyProps = {
     navigation: any
@@ -22,7 +22,7 @@ type MyState = {
     seasonTicketMenu: Object
 };
 
-export default class ManageSeasonTicket extends React.Component<MyProps, MyState> {
+export default class StManage extends React.Component<MyProps, MyState> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -86,8 +86,8 @@ export default class ManageSeasonTicket extends React.Component<MyProps, MyState
                     />
                 </StyledSummaryHeader>
                 <StyledSummaryContents>
-                    <SeasonTicketStatusContainer seasonTicketStatus={seasonTicketStatus} />
-                    <SeasonTicketMenuContainer seasonTicketMenu={seasonTicketMenu} />
+                    <StStatusContainer seasonTicketStatus={seasonTicketStatus} />
+                    <StMenuContainer seasonTicketMenu={seasonTicketMenu} />
                 </StyledSummaryContents>
             </View>
         )
