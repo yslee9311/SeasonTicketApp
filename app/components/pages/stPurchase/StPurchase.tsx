@@ -11,32 +11,41 @@ import styled from 'styled-components/native';
 import colors from '../../../common/values/colors';
 
 import DefaultText from '../../atoms/texts/defaultText';
-import SeasonTicketPurchaseContainer from '../../organisms/manageSeasonTicketPurchase/seasonTicketPurchaseContainer';
+import StPurchaseContainer from '../../organisms/stPurchase/stPurchaseContainer';
 
 type MyProps = {
     navigation: any
-    route: any
 };
-type MyState = {};
+type MyState = {
+    purchaseList: Object
+};
 
 type passData = {
     label: string
     price: number
 };
 
-export default class ManageSeasonTicketPurchaseDetails extends React.Component<MyProps, MyState> {
-
+export default class StPurchase extends React.Component<MyProps, MyState> {
     constructor(props: any) {
         super(props);
         this.state = {
+            purchaseList: [
+                {
+                    label: "월정기권",
+                    price: 55000,
+                    func: (data: passData) => { this.props.navigation.navigate('StPurchaseDetails', data)},
+                },
+                {
+                    label: "추가월정기권",
+                    price: 88000,
+                    func: (data: passData) => { this.props.navigation.navigate('StPurchaseDetails', data)},
+                },
+            ]
         };
-    }
-    componentDidMount(): void {
-        console.log(this.props.route.params);
-        
     }
 
     render() {
+        const { purchaseList } = this.state
         return (
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {Platform.OS === 'ios' ? (
@@ -53,9 +62,9 @@ export default class ManageSeasonTicketPurchaseDetails extends React.Component<M
                         color={colors.white}
                     />
                 </StyledSummaryHeader>
-                {/* <StyledSummaryContents>
-                    <SeasonTicketPurchaseContainer purchaseList={purchaseList} />
-                </StyledSummaryContents> */}
+                <StyledSummaryContents>
+                    <StPurchaseContainer purchaseList={purchaseList} />
+                </StyledSummaryContents>
             </View>
         )
     }
