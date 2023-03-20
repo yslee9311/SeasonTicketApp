@@ -28,8 +28,8 @@ export default class SeasonTicketStatusContainer extends React.Component<MyProps
                     {Object.values(seasonTicketStatus).map((item, index) => {
                         // let data: IChartFilter = seasonTicketStatus[item] // typescript 검토 필요
                         return (
-
                             <SeasonTicketStatusItem
+                                key={item.text}
                                 title={item.text}
                                 number={item.number}
                                 paddingTop={index == 0 ? 0 : 8} />

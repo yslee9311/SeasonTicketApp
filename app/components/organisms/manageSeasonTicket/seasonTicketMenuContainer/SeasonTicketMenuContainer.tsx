@@ -27,6 +27,7 @@ const SeasonTicketMenuContainer = ({
                 {Object.values(seasonTicketMenu).map((item, index) => {
                     return (
                         <SeasonTicketMenuItem
+                            key={item.text}
                             title={item.text}
                             func={item.func}
                             borderTop={index == 0 ? 0 : 1} />

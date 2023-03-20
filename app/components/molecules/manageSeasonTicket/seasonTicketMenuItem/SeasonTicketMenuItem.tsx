@@ -40,7 +40,7 @@ const SeasonTicketMenuItemLayout = styled.TouchableOpacity<{ borderTopWidth?: nu
     align-items: center;
     padding-vertical: 16px;
     border-top-color: ${colors.gray200};
-    border-top-width: ${props => props.borderTopWidth};
+    border-top-width: ${props => props.borderTopWidth}px;
 `;
 
 export default SeasonTicketMenuItem;

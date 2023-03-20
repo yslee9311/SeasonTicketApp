@@ -38,7 +38,7 @@ const SeasonTicketStatusItem = ({
 const SeasonTicketStatusItemLayout = styled.View<{ paddingTop?: number }>`
     flex-direction: row;
     justify-content: space-between;
-    padding-top: ${props => props.paddingTop}
+    padding-top: ${props => props.paddingTop}px;
 `;
 
 export default SeasonTicketStatusItem;
