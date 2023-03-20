@@ -14,7 +14,9 @@ import DefaultText from '../../atoms/texts/defaultText';
 import SeasonTicketStatusContainer from '../../organisms/manageSeasonTicket/seasonTicketStatusContainer';
 import SeasonTicketMenuContainer from '../../organisms/manageSeasonTicket/seasonTicketMenuContainer';
 
-type MyProps = {};
+type MyProps = {
+    navigation: any
+};
 type MyState = {
     seasonTicketStatus: Object
     seasonTicketMenu: Object
@@ -45,7 +47,10 @@ export default class ManageSeasonTicket extends React.Component<MyProps, MyState
             seasonTicketMenu: {
                 "purchase": {
                     text: "정기권 구매",
-                    func: () => { },
+                    func: () => { 
+                        const { navigation } = this.props;
+                        navigation.navigate('ManageSeasonTicketPurchase', {})
+                    }
                 },
                 "extension": {
                     text: "정기권 연장/결재",
