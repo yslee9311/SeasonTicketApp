@@ -24,7 +24,11 @@ const SeasonTicketStatusItem = ({
     return (
         <SeasonTicketStatusItemLayout
             marginTop={marginTop}
-            onPress={() => func()}>
+            onPress={() => func({
+                label: title,
+                price: number
+            })
+            }>
             <DefaultText
                 text={title}
                 size={22}
