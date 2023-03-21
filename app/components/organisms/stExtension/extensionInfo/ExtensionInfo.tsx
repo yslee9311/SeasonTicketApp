@@ -13,18 +13,19 @@ interface Target {
     label: string
     deadline: string
     price: number,
-    func: Function,
 }
 
 type MyProps = {
     extensionList: Target[]
+    func: Function
 };
 type MyState = {};
 
 export default class ExtensionInfo extends React.Component<MyProps, MyState> {
     render() {
         const {
-            extensionList
+            extensionList,
+            func,
         } = this.props
         return (
             <ScrollLayout>
@@ -38,7 +39,7 @@ export default class ExtensionInfo extends React.Component<MyProps, MyState> {
                             label={data.label}
                             deadline={data.deadline}
                             price={data.price}
-                            func={data.func}
+                            func={() => func(data)}
                         />
                     )
 

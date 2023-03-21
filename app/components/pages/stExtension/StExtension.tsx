@@ -18,7 +18,6 @@ interface Target {
     label: string
     deadline: string
     price: number,
-    func: Function,
 }
 
 type MyProps = {
@@ -40,7 +39,6 @@ export default class StExtension extends React.Component<MyProps, MyState> {
                     label: "추가월정기권",
                     deadline: "2023-04-01",
                     price: 88000,
-                    func: () => { },
                 },
                 {
                     carNum: "22가2222",
@@ -49,10 +47,13 @@ export default class StExtension extends React.Component<MyProps, MyState> {
                     label: "추가월정기권",
                     deadline: "2023-04-02",
                     price: 88000,
-                    func: () => { },
                 },
             ]
         };
+    }
+
+    moveToDetailPage = (data: any) => {
+        this.props.navigation.navigate('StExtensionDetails', data)
     }
 
     render() {
@@ -70,7 +71,8 @@ export default class StExtension extends React.Component<MyProps, MyState> {
                     backFunc={() => this.props.navigation.goBack()}
                 />
                 <ExtensionInfo
-                    extensionList={extensionList} />
+                    extensionList={extensionList}
+                    func={(data: any) => this.moveToDetailPage(data)} />
             </View>
         )
     }
