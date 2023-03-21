@@ -17,6 +17,8 @@ interface PaymentInfo {
     orderNum: string
     approvalNum: string
     paymentMethod: string
+    paymentDate: string
+    amount: number
 }
 
 interface Target {
@@ -54,6 +56,8 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                         orderNum: "RTPC20230323110101",
                         approvalNum: "10020001",
                         paymentMethod: "신용카드",
+                        paymentDate: "2023-03-23 11:01",
+                        amount: 88000,
                     },
                 },
                 {
@@ -68,6 +72,8 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                         orderNum: "RTPC20230323110501",
                         approvalNum: "10020002",
                         paymentMethod: "신용카드",
+                        paymentDate: "2023-03-23 11:05",
+                        amount: 88000,
                     },
                 },
                 {
@@ -82,6 +88,8 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                         orderNum: "RTPC20230323111101",
                         approvalNum: "10020003",
                         paymentMethod: "신용카드",
+                        paymentDate: "2023-03-23 11:11",
+                        amount: 88000,
                     },
                 },
                 {
@@ -96,6 +104,8 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                         orderNum: "RTPC20230323111501",
                         approvalNum: "10020004",
                         paymentMethod: "신용카드",
+                        paymentDate: "2023-03-23 11:15",
+                        amount: 88000,
                     },
                 },
                 {
@@ -110,6 +120,8 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                         orderNum: "RTPC20230323112101",
                         approvalNum: "10020005",
                         paymentMethod: "신용카드",
+                        paymentDate: "2023-03-23 11:21",
+                        amount: 88000,
                     },
                 },
                 {
@@ -124,6 +136,8 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                         orderNum: "RTPC20230323112501",
                         approvalNum: "10020006",
                         paymentMethod: "신용카드",
+                        paymentDate: "2023-03-23 11:25",
+                        amount: 88000,
                     },
                 },
             ]
