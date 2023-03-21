@@ -59,7 +59,9 @@ export default class StManage extends React.Component<MyProps, MyState> {
                 },
                 "status": {
                     text: "정기권 현황",
-                    func: () => { },
+                    func: () => {
+                        this.props.navigation.navigate('StStatus', {})
+                    },
                 },
             }
         };
