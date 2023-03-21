@@ -31,6 +31,7 @@ export default class ExtensionInfo extends React.Component<MyProps, MyState> {
                 {extensionList.map((data, index) => {
                     return (
                         <ExtensionItem
+                            key={data.carNum}
                             carNum={data.carNum}
                             name={data.name}
                             phoneNum={data.phoneNum}
