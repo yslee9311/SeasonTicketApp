@@ -5,13 +5,12 @@ import {
     StatusBar,
     View,
 } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
 
 import colors from '../../../common/values/colors';
 
-import DefaultText from '../../atoms/texts/defaultText';
+import HeaderTab from '../../molecules/headerTab';
 import DetailsBasicContainer from '../../organisms/stStatus/detailsBasicContainer';
 import DetailsTicketContainer from '../../organisms/stStatus/detailsTicketContainer';
 import DetailsPaymentContainer from '../../organisms/stStatus/detailsPaymentContainer';
@@ -44,16 +43,11 @@ export default class StStatusDetails extends React.Component<MyProps, MyState> {
                 ) : (
                     <StatusBar backgroundColor={colors.primary} barStyle={'light-content'} />
                 )}
-                <StyledSummaryHeader
-                    statusBarHeight={getStatusBarHeight(true)}>
-                    <DefaultText
-                        text={'정기권 현황'}
-                        size={26}
-                        weight={'Bold'}
-                        color={colors.white}
-                    />
-                </StyledSummaryHeader>
-
+                <HeaderTab
+                    text={'정기권 현황'}
+                    backButtonVisible={true}
+                    backFunc={() => this.props.navigation.goBack()}
+                />
                 <ScrollLayout>
                     <View style={{ paddingBottom: getBottomSpace() }}>
                         <DetailsBasicContainer
@@ -79,13 +73,6 @@ export default class StStatusDetails extends React.Component<MyProps, MyState> {
         )
     }
 }
-
-const StyledSummaryHeader = styled.View<{ statusBarHeight: number }>`
-    height: ${props => 120 + props.statusBarHeight}px;
-    background-color: ${colors.primary};
-    padding: 16px;
-    padding-top: ${props => props.statusBarHeight + 30}px;
-`;
 
 const ScrollLayout = styled.ScrollView`
     flex: 1px;

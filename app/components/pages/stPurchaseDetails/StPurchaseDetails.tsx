@@ -5,11 +5,10 @@ import {
     StatusBar,
     View,
 } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import styled from 'styled-components/native';
 
 import colors from '../../../common/values/colors';
-import DefaultText from '../../atoms/texts/defaultText';
+
+import HeaderTab from '../../molecules/headerTab';
 import StDetailsInfo from '../../organisms/stPurchase/stDetailsInfo';
 import BottomButton from '../../atoms/button/bottomButton';
 
@@ -45,15 +44,11 @@ export default class StPurchaseDetails extends React.Component<MyProps, MyState>
                 ) : (
                     <StatusBar backgroundColor={colors.primary} barStyle={'light-content'} />
                 )}
-                <StyledSummaryHeader
-                    statusBarHeight={getStatusBarHeight(true)}>
-                    <DefaultText
-                        text={'정기권 구매'}
-                        size={26}
-                        weight={'Bold'}
-                        color={colors.white}
-                    />
-                </StyledSummaryHeader>
+                <HeaderTab
+                    text={'정기권 구매'}
+                    backButtonVisible={true}
+                    backFunc={() => this.props.navigation.goBack()}
+                />
                 <StDetailsInfo
                     label={label}
                     price={price}
@@ -75,10 +70,3 @@ export default class StPurchaseDetails extends React.Component<MyProps, MyState>
         )
     }
 }
-
-const StyledSummaryHeader = styled.View<{ statusBarHeight: number }>`
-    height: ${props => 120 + props.statusBarHeight}px;
-    background-color: ${colors.primary};
-    padding: 16px;
-    padding-top: ${props => props.statusBarHeight + 30}px;
-`;

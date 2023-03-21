@@ -5,12 +5,11 @@ import {
     StatusBar,
     View,
 } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import styled from 'styled-components/native';
 
 import colors from '../../../common/values/colors';
 
-import DefaultText from '../../atoms/texts/defaultText';
+import HeaderTab from '../../molecules/headerTab';
 import StStatusContainer from '../../organisms/stManage/stStatusContainer';
 import StMenuContainer from '../../organisms/stManage/stMenuContainer';
 
@@ -79,15 +78,7 @@ export default class StManage extends React.Component<MyProps, MyState> {
                 ) : (
                     <StatusBar backgroundColor={colors.primary} barStyle={'light-content'} />
                 )}
-                <StyledSummaryHeader
-                    statusBarHeight={getStatusBarHeight(true)}>
-                    <DefaultText
-                        text={'정기권'}
-                        size={26}
-                        weight={'Bold'}
-                        color={colors.white}
-                    />
-                </StyledSummaryHeader>
+                <HeaderTab text={'정기권'} />
                 <StyledSummaryContents>
                     <StStatusContainer seasonTicketStatus={seasonTicketStatus} />
                     <StMenuContainer seasonTicketMenu={seasonTicketMenu} />
@@ -96,13 +87,6 @@ export default class StManage extends React.Component<MyProps, MyState> {
         )
     }
 };
-
-const StyledSummaryHeader = styled.View<{ statusBarHeight: number }>`
-    height: ${props => 120 + props.statusBarHeight}px;
-    background-color: ${colors.primary};
-    padding: 16px;
-    padding-top: ${props => props.statusBarHeight + 30}px;
-`;
 
 const StyledSummaryContents = styled.View`
     padding-horizontal: 16px;
