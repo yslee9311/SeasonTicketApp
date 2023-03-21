@@ -13,6 +13,12 @@ import colors from '../../../common/values/colors';
 import DefaultText from '../../atoms/texts/defaultText';
 import StatusInfo from '../../organisms/stStatus/statusInfo';
 
+interface PaymentInfo {
+    orderNum: string
+    approvalNum: string
+    paymentMethod: string
+}
+
 interface Target {
     carNum: string
     name: string
@@ -20,7 +26,8 @@ interface Target {
     startDate: string
     endDate: string
     state: string
-    func: Function
+    seasonTicketNum?: string
+    paymentInfo?: PaymentInfo
 }
 
 type MyProps = {
@@ -42,7 +49,12 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                     startDate: "2023-03-23",
                     endDate: "2023-04-22",
                     state: "결제대기",
-                    func: () => { },
+                    seasonTicketNum: "NRST194101",
+                    paymentInfo: {
+                        orderNum: "RTPC20230323110101",
+                        approvalNum: "10020001",
+                        paymentMethod: "신용카드",
+                    },
                 },
                 {
                     carNum: "22가2222",
@@ -51,7 +63,12 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                     startDate: "2023-03-23",
                     endDate: "2023-04-22",
                     state: "결제완료",
-                    func: () => { },
+                    seasonTicketNum: "NRST194102",
+                    paymentInfo: {
+                        orderNum: "RTPC20230323110501",
+                        approvalNum: "10020002",
+                        paymentMethod: "신용카드",
+                    },
                 },
                 {
                     carNum: "33가3333",
@@ -60,7 +77,12 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                     startDate: "2023-03-23",
                     endDate: "2023-04-22",
                     state: "결제완료",
-                    func: () => { },
+                    seasonTicketNum: "NRST194103",
+                    paymentInfo: {
+                        orderNum: "RTPC20230323111101",
+                        approvalNum: "10020003",
+                        paymentMethod: "신용카드",
+                    },
                 },
                 {
                     carNum: "44가4444",
@@ -69,7 +91,12 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                     startDate: "2023-03-23",
                     endDate: "2023-04-22",
                     state: "결제완료",
-                    func: () => { },
+                    seasonTicketNum: "NRST194104",
+                    paymentInfo: {
+                        orderNum: "RTPC20230323111501",
+                        approvalNum: "10020004",
+                        paymentMethod: "신용카드",
+                    },
                 },
                 {
                     carNum: "55가5555",
@@ -78,7 +105,12 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                     startDate: "2023-03-23",
                     endDate: "2023-04-22",
                     state: "결제완료",
-                    func: () => { },
+                    seasonTicketNum: "NRST194105",
+                    paymentInfo: {
+                        orderNum: "RTPC20230323112101",
+                        approvalNum: "10020005",
+                        paymentMethod: "신용카드",
+                    },
                 },
                 {
                     carNum: "66가6666",
@@ -87,10 +119,19 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                     startDate: "2023-03-23",
                     endDate: "2023-04-22",
                     state: "결제완료",
-                    func: () => { },
+                    seasonTicketNum: "NRST194106",
+                    paymentInfo: {
+                        orderNum: "RTPC20230323112501",
+                        approvalNum: "10020006",
+                        paymentMethod: "신용카드",
+                    },
                 },
             ]
         };
+    }
+
+    moveToDetailPage = (data: any) => {
+        this.props.navigation.navigate('StStatusDetails', data)
     }
 
     render() {
@@ -112,7 +153,8 @@ export default class StStatus extends React.Component<MyProps, MyState> {
                     />
                 </StyledSummaryHeader>
                 <StatusInfo
-                    statusList={statusList} />
+                    statusList={statusList}
+                    func={(data: any) => this.moveToDetailPage(data)} />
             </View>
         )
     }

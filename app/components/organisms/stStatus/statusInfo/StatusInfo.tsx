@@ -15,18 +15,19 @@ interface Target {
     startDate: string
     endDate: string
     state: string
-    func: Function
 }
 
 type MyProps = {
     statusList: Target[]
+    func: Function
 };
 type MyState = {};
 
 export default class ExtensionInfo extends React.Component<MyProps, MyState> {
     render() {
         const {
-            statusList
+            statusList,
+            func,
         } = this.props
         return (
             <ScrollLayout>
@@ -41,7 +42,7 @@ export default class ExtensionInfo extends React.Component<MyProps, MyState> {
                                 startDate={data.startDate}
                                 endDate={data.endDate}
                                 state={data.state}
-                                func={data.func}
+                                func={() => func(data)}
                             />
                         )
                     })}
