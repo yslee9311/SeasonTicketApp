@@ -62,10 +62,8 @@ export default class StPurchaseDetails extends React.Component<MyProps, MyState>
                     weight={'Bold'}
                     textColor={colors.white}
                     buttonColor={colors.black}
-                    func={() => {
-                        console.log(this.state);
-
-                    }} />
+                    func={() => this.props.navigation.navigate("StPurchaseCompleted", {})}
+                />
             </View>
         )
     }

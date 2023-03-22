@@ -5,6 +5,7 @@ import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react
 import StManage from '../components/pages/stManage';
 import StPurchase from '../components/pages/stPurchase';
 import StPurchaseDetails from '../components/pages/stPurchaseDetails';
+import StPurchaseCompleted from '../components/pages/stPurchaseCompleted';
 import StExtension from '../components/pages/stExtension';
 import StExtensionDetails from '../components/pages/stExtensionDetails';
 import StStatus from '../components/pages/stStatus';
@@ -25,6 +26,7 @@ const SetOfStack = (value: { prop: { initialRouteName: string | undefined; }; })
             <Stack.Screen name="StManage" component={StManage} />
             <Stack.Screen name="StPurchase" component={StPurchase} />
             <Stack.Screen name="StPurchaseDetails" component={StPurchaseDetails} />
+            <Stack.Screen name="StPurchaseCompleted" component={StPurchaseCompleted} options={{gestureEnabled: false}}/>
             <Stack.Screen name="StExtension" component={StExtension} />
             <Stack.Screen name="StExtensionDetails" component={StExtensionDetails} />
             <Stack.Screen name="StStatus" component={StStatus} />
