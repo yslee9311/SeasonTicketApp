@@ -51,7 +51,7 @@ export default class StManage extends React.Component<MyProps, MyState> {
                     }
                 },
                 "extension": {
-                    text: "정기권 연장/결재",
+                    text: "정기권 연장/결제",
                     func: () => {
                         this.props.navigation.navigate('StExtension', {})
                     },
