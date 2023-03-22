@@ -9,18 +9,18 @@ import DefaultText from '../../../atoms/texts/defaultText';
 import DetailsContents from '../../../molecules/stStatus/detailsContents';
 
 type MyProps = {
-    carNum: string
+    plateNumber: string
     name: string
-    phoneNum: string
+    phone: string
 };
 type MyState = {};
 
 export default class DetailsBasicContainer extends React.Component<MyProps, MyState> {
     render() {
         const {
-            carNum,
+            plateNumber,
             name,
-            phoneNum,
+            phone,
         } = this.props
         return (
             <View>
@@ -34,7 +34,7 @@ export default class DetailsBasicContainer extends React.Component<MyProps, MySt
                 <ContentsList>
                     <DetailsContents
                         label={"차량번호"}
-                        data={carNum}
+                        data={plateNumber}
                     />
                     <DetailsContents
                         label={"이름"}
@@ -42,7 +42,7 @@ export default class DetailsBasicContainer extends React.Component<MyProps, MySt
                     />
                     <DetailsContents
                         label={"휴대폰번호"}
-                        data={phoneNum}
+                        data={phone}
                     />
                 </ContentsList>
             </View>

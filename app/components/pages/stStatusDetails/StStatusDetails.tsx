@@ -15,24 +15,27 @@ import DetailsBasicContainer from '../../organisms/stStatus/detailsBasicContaine
 import DetailsTicketContainer from '../../organisms/stStatus/detailsTicketContainer';
 import DetailsPaymentContainer from '../../organisms/stStatus/detailsPaymentContainer';
 
+import { ContextConsumer } from '../../../config/contexts';
+
 type MyProps = {
     navigation: any
+    context: any
     route: any
 };
 type MyState = {};
 
-export default class StStatusDetails extends React.Component<MyProps, MyState> {
+class StStatusDetails extends React.Component<MyProps, MyState> {
     constructor(props: any) {
         super(props);
     }
 
     render() {
         const {
-            carNum,
+            plateNumber,
             name,
-            phoneNum,
-            startDate,
-            endDate,
+            phone,
+            startOn,
+            endOn,
             seasonTicketNum,
             paymentInfo,
         } = this.props.route.params
@@ -51,13 +54,13 @@ export default class StStatusDetails extends React.Component<MyProps, MyState> {
                 <ScrollLayout>
                     <View style={{ paddingBottom: getBottomSpace() }}>
                         <DetailsBasicContainer
-                            carNum={carNum}
+                            plateNumber={plateNumber}
                             name={name}
-                            phoneNum={phoneNum}
+                            phone={phone}
                         />
                         <DetailsTicketContainer
-                            startDate={startDate}
-                            endDate={endDate}
+                            startOn={startOn}
+                            endOn={endOn}
                             seasonTicketNum={seasonTicketNum}
                         />
                         <DetailsPaymentContainer
@@ -79,3 +82,24 @@ const ScrollLayout = styled.ScrollView`
     background-color: ${colors.white};
     padding: 16px;
 `;
+
+const StStatusDetailsContainer = (props: {
+    navigation: any;
+    route: any;
+}) => {
+    return (
+        <ContextConsumer>
+            {
+                (context) => (
+                    <StStatusDetails
+                        navigation={props.navigation}
+                        route={props.route}
+                        context={context}
+                    />
+                )
+            }
+        </ContextConsumer>
+    )
+}
+
+export default StStatusDetailsContainer;

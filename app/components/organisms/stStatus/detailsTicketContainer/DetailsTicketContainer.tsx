@@ -9,8 +9,8 @@ import DefaultText from '../../../atoms/texts/defaultText';
 import DetailsContents from '../../../molecules/stStatus/detailsContents';
 
 type MyProps = {
-    startDate: string
-    endDate: string
+    startOn: string
+    endOn: string
     seasonTicketNum: string
 };
 type MyState = {};
@@ -18,8 +18,8 @@ type MyState = {};
 export default class DetailsTicketContainer extends React.Component<MyProps, MyState> {
     render() {
         const {
-            startDate,
-            endDate,
+            startOn,
+            endOn,
             seasonTicketNum,
         } = this.props
         return (
@@ -42,11 +42,11 @@ export default class DetailsTicketContainer extends React.Component<MyProps, MyS
                     />
                     <DetailsContents
                         label={"시작일시"}
-                        data={startDate}
+                        data={startOn}
                     />
                     <DetailsContents
                         label={"종료일시"}
-                        data={endDate}
+                        data={endOn}
                     />
                 </ContentsList>
             </View>

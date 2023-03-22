@@ -9,11 +9,11 @@ import colors from '../../../../common/values/colors';
 import StatusItem from '../../../molecules/stStatus/statusItem';
 
 interface Target {
-    carNum: string
+    plateNumber: string
     name: string
-    phoneNum: string
-    startDate: string
-    endDate: string
+    phone: string
+    startOn: string
+    endOn: string
     state: string
 }
 
@@ -35,12 +35,12 @@ export default class ExtensionInfo extends React.Component<MyProps, MyState> {
                     {statusList.map((data, index) => {
                         return (
                             <StatusItem
-                                key={data.carNum}
-                                carNum={data.carNum}
+                                key={data.plateNumber}
+                                plateNumber={data.plateNumber}
                                 name={data.name}
-                                phoneNum={data.phoneNum}
-                                startDate={data.startDate}
-                                endDate={data.endDate}
+                                phone={data.phone}
+                                startOn={data.startOn}
+                                endOn={data.endOn}
                                 state={data.state}
                                 func={() => func(data)}
                             />

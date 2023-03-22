@@ -10,6 +10,7 @@ import colors from '../../../common/values/colors';
 
 import HeaderTab from '../../molecules/headerTab';
 import StatusInfo from '../../organisms/stStatus/statusInfo';
+import { ContextConsumer } from '../../../config/contexts';
 
 interface PaymentInfo {
     orderNum: string
@@ -20,11 +21,11 @@ interface PaymentInfo {
 }
 
 interface Target {
-    carNum: string
+    plateNumber: string
     name: string
-    phoneNum: string
-    startDate: string
-    endDate: string
+    phone: string
+    startOn: string
+    endOn: string
     state: string
     seasonTicketNum?: string
     paymentInfo?: PaymentInfo
@@ -32,114 +33,60 @@ interface Target {
 
 type MyProps = {
     navigation: any
+    context: any
 };
 type MyState = {
     statusList: Target[]
 };
 
-export default class StStatus extends React.Component<MyProps, MyState> {
+class StStatus extends React.Component<MyProps, MyState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            statusList: [
-                {
-                    carNum: "11가1111",
-                    name: "홍길동",
-                    phoneNum: "010-1111-1111",
-                    startDate: "2023-03-23",
-                    endDate: "2023-04-22",
-                    state: "결제대기",
-                    seasonTicketNum: "NRST194101",
-                    paymentInfo: {
-                        orderNum: "RTPC20230323110101",
-                        approvalNum: "10020001",
-                        paymentMethod: "신용카드",
-                        paymentDate: "2023-03-23 11:01",
-                        amount: 88000,
-                    },
-                },
-                {
-                    carNum: "22가2222",
-                    name: "아무개",
-                    phoneNum: "010-2222-2222",
-                    startDate: "2023-03-23",
-                    endDate: "2023-04-22",
-                    state: "결제완료",
-                    seasonTicketNum: "NRST194102",
-                    paymentInfo: {
-                        orderNum: "RTPC20230323110501",
-                        approvalNum: "10020002",
-                        paymentMethod: "신용카드",
-                        paymentDate: "2023-03-23 11:05",
-                        amount: 88000,
-                    },
-                },
-                {
-                    carNum: "33가3333",
-                    name: "아무개",
-                    phoneNum: "010-3333-3333",
-                    startDate: "2023-03-23",
-                    endDate: "2023-04-22",
-                    state: "결제완료",
-                    seasonTicketNum: "NRST194103",
-                    paymentInfo: {
-                        orderNum: "RTPC20230323111101",
-                        approvalNum: "10020003",
-                        paymentMethod: "신용카드",
-                        paymentDate: "2023-03-23 11:11",
-                        amount: 88000,
-                    },
-                },
-                {
-                    carNum: "44가4444",
-                    name: "아무개",
-                    phoneNum: "010-4444-4444",
-                    startDate: "2023-03-23",
-                    endDate: "2023-04-22",
-                    state: "결제완료",
-                    seasonTicketNum: "NRST194104",
-                    paymentInfo: {
-                        orderNum: "RTPC20230323111501",
-                        approvalNum: "10020004",
-                        paymentMethod: "신용카드",
-                        paymentDate: "2023-03-23 11:15",
-                        amount: 88000,
-                    },
-                },
-                {
-                    carNum: "55가5555",
-                    name: "아무개",
-                    phoneNum: "010-5555-5555",
-                    startDate: "2023-03-23",
-                    endDate: "2023-04-22",
-                    state: "결제완료",
-                    seasonTicketNum: "NRST194105",
-                    paymentInfo: {
-                        orderNum: "RTPC20230323112101",
-                        approvalNum: "10020005",
-                        paymentMethod: "신용카드",
-                        paymentDate: "2023-03-23 11:21",
-                        amount: 88000,
-                    },
-                },
-                {
-                    carNum: "66가6666",
-                    name: "아무개",
-                    phoneNum: "010-6666-6666",
-                    startDate: "2023-03-23",
-                    endDate: "2023-04-22",
-                    state: "결제완료",
-                    seasonTicketNum: "NRST194106",
-                    paymentInfo: {
-                        orderNum: "RTPC20230323112501",
-                        approvalNum: "10020006",
-                        paymentMethod: "신용카드",
-                        paymentDate: "2023-03-23 11:25",
-                        amount: 88000,
-                    },
-                },
-            ]
+            statusList: new Array(),
+            // statusList: [
+            //     {
+            //         plateNumber: "11가1111",
+            //         name: "홍길동",
+            //         phone: "010-1111-1111",
+            //         startOn: "2023-03-23",
+            //         endOn: "2023-04-22",
+            //         // state: "결제대기",
+            //         seasonTicketNum: "NRST194101",
+            //         paymentInfo: {
+            //             orderNum: "RTPC20230323110101",
+            //             approvalNum: "10020001",
+            //             paymentMethod: "신용카드",
+            //             paymentDate: "2023-03-23 11:01",
+            //             amount: 88000,
+            //         },
+            //     },
         };
+    }
+
+    componentDidMount(): void {
+        let { totalInfo } = this.props.context.state
+        let statusList = new Array()
+        for (const value of totalInfo) {
+            let inputValue = {
+                plateNumber: value.plate_number,
+                name: value.name,
+                phone: value.phone,
+                startOn: value.start_on.split(" ")[0],
+                endOn: value.end_on.split(" ")[0],
+                state: "결제완료",
+                seasonTicketNum: `STVE${value.ticket_vehicle_uuid.split("-")[0]}`,
+                paymentInfo: {
+                    orderNum: `RTPC${value.uuid.split("-")[0]}`,
+                    approvalNum: `${parseInt(value.uuid.split("-")[0].substr(0, 4), 16)}`,
+                    paymentMethod: "신용카드",
+                    paymentDate: value.payment_on,
+                    amount: value.amount,
+                },
+            }
+            statusList.push(inputValue)
+        }
+        this.setState({ statusList })
     }
 
     moveToDetailPage = (data: any) => {
@@ -167,3 +114,20 @@ export default class StStatus extends React.Component<MyProps, MyState> {
         )
     }
 }
+
+const StStatusContainer = (props: { navigation: any; }) => {
+    return (
+        <ContextConsumer>
+            {
+                (context) => (
+                    <StStatus
+                        navigation={props.navigation}
+                        context={context}
+                    />
+                )
+            }
+        </ContextConsumer>
+    )
+}
+
+export default StStatusContainer;

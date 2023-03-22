@@ -10,21 +10,21 @@ import colors from '../../../../common/values/colors';
 import DefaultText from '../../../atoms/texts/defaultText';
 
 interface Item {
-    carNum: string
+    plateNumber: string
     name: string
-    phoneNum: string
-    startDate: string
-    endDate: string
+    phone: string
+    startOn: string
+    endOn: string
     state: string
     func: Function
 };
 
 const ExtensionItem = ({
-    carNum = '',
+    plateNumber = '',
     name = '',
-    phoneNum = '',
-    startDate = '',
-    endDate = '',
+    phone = '',
+    startOn = '',
+    endOn = '',
     state = '',
     func = () => { },
 }: Item) => {
@@ -35,19 +35,19 @@ const ExtensionItem = ({
             <View
                 style={{ justifyContent: 'space-between' }}>
                 <DefaultText
-                    text={carNum}
+                    text={plateNumber}
                     size={16}
                     weight={'Bold'}
                     color={colors.black}
                 />
                 <DefaultText
-                    text={`${name}  |  ${phoneNum}`}
+                    text={`${name}  |  ${phone}`}
                     size={14}
                     weight={'Regular'}
                     color={colors.gray400}
                 />
                 <DefaultText
-                    text={`${state == "결제대기" ? "사용예정" : "사용중"}  |  ${startDate}~${endDate}`}
+                    text={`${state == "결제대기" ? "사용예정" : "사용중"}  |  ${startOn}~${endOn}`}
                     size={16}
                     weight={'Regular'}
                     color={colors.black}
