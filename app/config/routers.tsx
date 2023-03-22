@@ -10,6 +10,7 @@ import StExtension from '../components/pages/stExtension';
 import StExtensionDetails from '../components/pages/stExtensionDetails';
 import StStatus from '../components/pages/stStatus';
 import StStatusDetails from '../components/pages/stStatusDetails';
+import { ContextProvider } from './contexts';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,18 +21,20 @@ const horizontalAnimation: NativeStackNavigationOptions = {
 
 const SetOfStack = (value: { prop: { initialRouteName: string | undefined; }; }) => {
     return (
-        <Stack.Navigator
-            initialRouteName={value.prop.initialRouteName}
-            screenOptions={horizontalAnimation}>
-            <Stack.Screen name="StManage" component={StManage} />
-            <Stack.Screen name="StPurchase" component={StPurchase} />
-            <Stack.Screen name="StPurchaseDetails" component={StPurchaseDetails} />
-            <Stack.Screen name="StPurchaseCompleted" component={StPurchaseCompleted} options={{gestureEnabled: false}}/>
-            <Stack.Screen name="StExtension" component={StExtension} />
-            <Stack.Screen name="StExtensionDetails" component={StExtensionDetails} />
-            <Stack.Screen name="StStatus" component={StStatus} />
-            <Stack.Screen name="StStatusDetails" component={StStatusDetails} />
-        </Stack.Navigator>
+        <ContextProvider>
+            <Stack.Navigator
+                initialRouteName={value.prop.initialRouteName}
+                screenOptions={horizontalAnimation}>
+                <Stack.Screen name="StManage" component={StManage} />
+                <Stack.Screen name="StPurchase" component={StPurchase} />
+                <Stack.Screen name="StPurchaseDetails" component={StPurchaseDetails} />
+                <Stack.Screen name="StPurchaseCompleted" component={StPurchaseCompleted} options={{ gestureEnabled: false }} />
+                <Stack.Screen name="StExtension" component={StExtension} />
+                <Stack.Screen name="StExtensionDetails" component={StExtensionDetails} />
+                <Stack.Screen name="StStatus" component={StStatus} />
+                <Stack.Screen name="StStatusDetails" component={StStatusDetails} />
+            </Stack.Navigator>
+        </ContextProvider>
     );
 };
 

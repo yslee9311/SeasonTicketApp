@@ -8,34 +8,11 @@ import {
 import styled from 'styled-components/native';
 
 import colors from '../../../common/values/colors';
-import { getVehicleInfo, getPaymentInfo } from '../../../common/utils/server/getServer';
 
 import HeaderTab from '../../molecules/headerTab';
 import StStatusContainer from '../../organisms/stManage/stStatusContainer';
 import StMenuContainer from '../../organisms/stManage/stMenuContainer';
-
-interface serverReturnData {
-    success: boolean
-    lists: Array<any>
-    lists_count: number
-}
-
-interface totalData {
-    plate_number: string
-    name: string
-    phone: string
-    created_on: string
-    modified_on: string
-    uuid: string
-    no: number
-    goods: string
-    start_on: string
-    end_on: string
-    card_number: string
-    amount: string
-    payment_on: string
-    ticket_vehicle_uuid: string
-};
+import { ContextConsumer } from '../../../config/contexts';
 
 interface ticketStatusItem {
     text: string
@@ -49,21 +26,19 @@ interface ticketStatus {
     waitPayment: ticketStatusItem
 };
 
-
 type MyProps = {
     navigation: any
+    context: any
 };
 type MyState = {
-    totalInfo: totalData[]
     seasonTicketStatus: ticketStatus
     seasonTicketMenu: Object
 };
 
-export default class StManage extends React.Component<MyProps, MyState> {
+class StManage extends React.Component<MyProps, MyState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            totalInfo: new Array(),
             seasonTicketStatus: {
                 "totalVehicle": {
                     text: "전체 대수",
@@ -71,15 +46,15 @@ export default class StManage extends React.Component<MyProps, MyState> {
                 },
                 "registered": {
                     text: "등록 차량",
-                    number: 6,
+                    number: 0,
                 },
                 "registerable": {
                     text: "등록 가능",
-                    number: 2,
+                    number: 0,
                 },
                 "waitPayment": {
                     text: "결제 대기",
-                    number: 1,
+                    number: 0,
                 },
             },
             seasonTicketMenu: {
@@ -100,30 +75,18 @@ export default class StManage extends React.Component<MyProps, MyState> {
     }
 
     componentDidMount = async () => {
+        let totalInfo = await this.props.context.func.refreshTotalInfo()
         let { seasonTicketStatus } = this.state
-        let vehicleInfo: serverReturnData = await getVehicleInfo()
-        let paymentInfo: serverReturnData = await getPaymentInfo()
-        let totalInfo = vehicleInfo.lists
-        for (const vehicle of totalInfo) {
-            for (const payment of paymentInfo.lists) {
-                if (vehicle.uuid == payment.ticket_vehicle_uuid) {
-                    Object.assign(vehicle, payment) // json 결합하여 vehicle에 입력
-                    break;
-                }
-            }
-        }
         seasonTicketStatus.totalVehicle.number = totalInfo.length
         seasonTicketStatus.registered.number = totalInfo.length
         seasonTicketStatus.registerable.number = 0
         seasonTicketStatus.waitPayment.number = 0
-        this.setState({
-            totalInfo,
-            seasonTicketStatus,
-        })
+        this.setState({ seasonTicketStatus })
     }
 
     moveToNextPage = (page: string) => {
-        this.props.navigation.navigate(page, page == 'StPurchase' ? {} : this.state.totalInfo) // 새로 구매의 경우 정보 필요 X
+        const { navigation, context } = this.props
+        navigation.navigate(page, {}) // 새로 구매의 경우 정보 필요 X
     }
 
     render() {
@@ -151,3 +114,20 @@ export default class StManage extends React.Component<MyProps, MyState> {
 const StyledSummaryContents = styled.View`
     padding-horizontal: 16px;
 `;
+
+const StManageContainer = (props: { navigation: any; }) => {
+    return (
+        <ContextConsumer>
+            {
+                (context) => (
+                    <StManage
+                        navigation={props.navigation}
+                        context={context}
+                    />
+                )
+            }
+        </ContextConsumer>
+    )
+}
+
+export default StManageContainer;
