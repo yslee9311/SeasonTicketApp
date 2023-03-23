@@ -7,12 +7,12 @@ import colors from '../../../../common/values/colors';
 import ExtensionItem from '../../../molecules/stExtension/extensionItem';
 
 interface Target {
-    carNum: string
+    plateNumber: string
     name: string
-    phoneNum: string
+    phone: string
     label: string
-    deadline: string
-    price: number,
+    endOn: string
+    amount: number,
 }
 
 type MyProps = {
@@ -32,13 +32,13 @@ export default class ExtensionInfo extends React.Component<MyProps, MyState> {
                 {extensionList.map((data, index) => {
                     return (
                         <ExtensionItem
-                            key={data.carNum}
-                            carNum={data.carNum}
+                            key={data.plateNumber}
+                            plateNumber={data.plateNumber}
                             name={data.name}
-                            phoneNum={data.phoneNum}
+                            phone={data.phone}
                             label={data.label}
-                            deadline={data.deadline}
-                            price={data.price}
+                            endOn={data.endOn}
+                            amount={data.amount}
                             func={() => func(data)}
                         />
                     )

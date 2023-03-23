@@ -8,6 +8,7 @@ import {
 import styled from 'styled-components/native';
 
 import colors from '../../../common/values/colors';
+import { checkShortlyBeforeExpiration } from '../../../common/utils/calculateDate';
 
 import HeaderTab from '../../molecules/headerTab';
 import StStatusContainer from '../../organisms/stManage/stStatusContainer';
@@ -84,13 +85,15 @@ class StManage extends React.Component<MyProps, MyState> {
         navigation.navigate(page, {}) // 새로 구매의 경우 정보 필요 X
     }
 
-    refreshManageData = async () => { // 갱신 함수
+    refreshManageData = async (): Promise<void> => { // 갱신 함수
         let totalInfo = await this.props.context.func.refreshTotalInfo()
+        let waitPayment = await checkShortlyBeforeExpiration(totalInfo)
+
         let { seasonTicketStatus } = this.state
         seasonTicketStatus.totalVehicle.number = totalInfo.length
-        seasonTicketStatus.registered.number = totalInfo.length
+        seasonTicketStatus.registered.number = totalInfo.length - waitPayment.length
         seasonTicketStatus.registerable.number = 0
-        seasonTicketStatus.waitPayment.number = 0
+        seasonTicketStatus.waitPayment.number = waitPayment.length
         this.setState({ seasonTicketStatus })
     }
 

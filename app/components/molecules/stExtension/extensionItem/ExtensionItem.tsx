@@ -11,25 +11,25 @@ import DefaultText from '../../../atoms/texts/defaultText';
 import { numberWithCommas } from '../../../../common/utils/convertNumberAndString';
 
 interface Item {
-    carNum: string
+    plateNumber: string
     name: string
-    phoneNum: string
+    phone: string
     label: string
-    deadline: string
-    price: number,
+    endOn: string
+    amount: number,
     func: Function,
 };
 
 const ExtensionItem = ({
-    carNum = '',
+    plateNumber = '',
     name = '',
-    phoneNum = '',
+    phone = '',
     label = '',
-    deadline = '',
-    price = 0,
+    endOn = '',
+    amount = 0,
     func = () => { },
 }: Item) => {
-    let stringFromNum = numberWithCommas(price)
+    let stringFromNum = numberWithCommas(amount)
     return (
         <ButtonLayout
             onPress={() => func()}
@@ -37,13 +37,13 @@ const ExtensionItem = ({
             <View
                 style={{ justifyContent: 'space-between' }}>
                 <DefaultText
-                    text={carNum}
+                    text={plateNumber}
                     size={16}
                     weight={'Bold'}
                     color={colors.black}
                 />
                 <DefaultText
-                    text={`${name}  |  ${phoneNum}`}
+                    text={`${name}  |  ${phone}`}
                     size={14}
                     weight={'Regular'}
                     color={colors.gray400}
@@ -55,7 +55,7 @@ const ExtensionItem = ({
                     color={colors.black}
                 />
                 <DefaultText
-                    text={`결제기한  |  ${deadline}`}
+                    text={`결제기한  |  ${endOn}`}
                     size={16}
                     weight={'Regular'}
                     color={colors.black}
