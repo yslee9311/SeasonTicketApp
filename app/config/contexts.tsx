@@ -44,6 +44,7 @@ class ContextProvider extends React.Component<MyProps, MyState> {
             totalInfo: new Array()
         }
     }
+    refreshManageFunc!: Function; // Manage 페이지의 데이터를 갱신하기 위함
 
     func = {
         refreshTotalInfo: () => new Promise<TotalInfo[]>(async (resolve, reject) => {
@@ -70,11 +71,21 @@ class ContextProvider extends React.Component<MyProps, MyState> {
         }),
     }
 
+    manageFunc = {
+        saveRefreshManageFunc: (data: Function) => {
+            this.refreshManageFunc = data
+        },
+        callRefreshManageFunc: () => {
+            this.refreshManageFunc()
+        }
+    }
+
     render() {
-        const { state, func } = this;
+        const { state, func, manageFunc } = this;
         const value: any = {
             state,
             func,
+            manageFunc,
         };
         return (
             <Provider value={value}>

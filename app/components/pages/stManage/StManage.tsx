@@ -75,6 +75,16 @@ class StManage extends React.Component<MyProps, MyState> {
     }
 
     componentDidMount = async () => {
+        this.props.context.manageFunc.saveRefreshManageFunc(this.refreshManageData) // context에 갱신 함수 저장
+        this.refreshManageData()
+    }
+
+    moveToNextPage = (page: string) => {
+        const { navigation, context } = this.props
+        navigation.navigate(page, {}) // 새로 구매의 경우 정보 필요 X
+    }
+
+    refreshManageData = async () => { // 갱신 함수
         let totalInfo = await this.props.context.func.refreshTotalInfo()
         let { seasonTicketStatus } = this.state
         seasonTicketStatus.totalVehicle.number = totalInfo.length
@@ -82,11 +92,6 @@ class StManage extends React.Component<MyProps, MyState> {
         seasonTicketStatus.registerable.number = 0
         seasonTicketStatus.waitPayment.number = 0
         this.setState({ seasonTicketStatus })
-    }
-
-    moveToNextPage = (page: string) => {
-        const { navigation, context } = this.props
-        navigation.navigate(page, {}) // 새로 구매의 경우 정보 필요 X
     }
 
     render() {

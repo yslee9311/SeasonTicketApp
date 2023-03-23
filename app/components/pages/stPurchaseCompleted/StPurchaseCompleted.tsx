@@ -9,16 +9,18 @@ import {
 import styled from 'styled-components/native';
 
 import colors from '../../../common/values/colors';
-import DefaultText from '../../atoms/texts/defaultText';
 
+import DefaultText from '../../atoms/texts/defaultText';
 import HeaderTab from '../../molecules/headerTab';
+import { ContextConsumer } from '../../../config/contexts';
 
 type MyProps = {
     navigation: any
+    context: any
 };
 type MyState = {};
 
-export default class StPurchaseCompleted extends React.Component<MyProps, MyState> {
+class StPurchaseCompleted extends React.Component<MyProps, MyState> {
     backHandler: any;
     constructor(props: any) {
         super(props);
@@ -34,6 +36,11 @@ export default class StPurchaseCompleted extends React.Component<MyProps, MyStat
         this.backHandler.remove(); // Remove when off screen
     }
 
+    goBackToManageFunc = () => {
+        this.props.context.manageFunc.callRefreshManageFunc()
+        this.props.navigation.popToTop()
+    }
+
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: colors.white }}>
@@ -45,7 +52,7 @@ export default class StPurchaseCompleted extends React.Component<MyProps, MyStat
                 <HeaderTab
                     text={'정기권 구매 완료'}
                     backButtonVisible={true}
-                    backFunc={() => this.props.navigation.popToTop()}
+                    backFunc={() => this.goBackToManageFunc()}
                 />
                 <ContentsContainer>
                     <DefaultText
@@ -56,7 +63,7 @@ export default class StPurchaseCompleted extends React.Component<MyProps, MyStat
                         marginBottom={30}
                     />
                     <Button
-                        onPress={() => this.props.navigation.popToTop()}>
+                        onPress={() => this.goBackToManageFunc()}>
                         <DefaultText
                             text={"돌아가기"}
                             color={colors.black}
@@ -86,3 +93,22 @@ const Button = styled.TouchableOpacity`
     border-width: 1px;
     border-color: ${colors.gray400}
 `;
+
+const StPurchaseCompletedContainer = (props: {
+    navigation: any;
+}) => {
+    return (
+        <ContextConsumer>
+            {
+                (context) => (
+                    <StPurchaseCompleted
+                        navigation={props.navigation}
+                        context={context}
+                    />
+                )
+            }
+        </ContextConsumer>
+    )
+}
+
+export default StPurchaseCompletedContainer;
