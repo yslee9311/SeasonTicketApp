@@ -36,7 +36,7 @@ const DetailVehicleInfo = ({
             <InputContainer>
                 <InputLayout>
                     <DefaultText
-                        text={`차량 정보`}
+                        text={`차량 번호`}
                         size={18}
                         weight={'Medium'}
                         color={colors.black}
