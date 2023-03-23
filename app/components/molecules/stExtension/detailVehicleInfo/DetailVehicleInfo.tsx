@@ -8,15 +8,15 @@ import colors from '../../../../common/values/colors';
 import DefaultText from '../../../atoms/texts/defaultText';
 
 interface VehicleInfo {
-    carNum: string
+    plateNumber: string
     name: string
-    phoneNum: string
+    phone: string
 };
 
 const DetailVehicleInfo = ({
-    carNum = "",
+    plateNumber = "",
     name = "",
-    phoneNum = "",
+    phone = "",
 }: VehicleInfo) => {
     return (
         <DescriptionLayout>
@@ -41,7 +41,7 @@ const DetailVehicleInfo = ({
                         color={colors.black}
                     />
                     <DefaultText
-                        text={carNum}
+                        text={plateNumber}
                         size={18}
                         weight={'Medium'}
                         color={colors.black}
@@ -69,7 +69,7 @@ const DetailVehicleInfo = ({
                         color={colors.black}
                     />
                     <DefaultText
-                        text={phoneNum}
+                        text={phone}
                         size={18}
                         weight={'Medium'}
                         color={colors.black}

@@ -17,10 +17,10 @@ import DetailVehicleInfo from '../../../molecules/stExtension/detailVehicleInfo'
 
 type MyProps = {
     label: string
-    price: number
-    carNum: string
+    amount: number
+    plateNumber: string
     name: string
-    phoneNum: string
+    phone: string
 };
 type MyState = {
     boolProductNoticeVisible: boolean
@@ -39,16 +39,16 @@ export default class StDetailsInfo extends React.Component<MyProps, MyState> {
     render() {
         const {
             label,
-            price,
-            carNum,
+            amount,
+            plateNumber,
             name,
-            phoneNum,
+            phone,
         } = this.props
         const {
             boolProductNoticeVisible,
             boolSellerInfoVisible,
         } = this.state
-        let stringFromPrice = numberWithCommas(price)
+        let stringFromPrice = numberWithCommas(amount)
         return (
             <ScrollLayout>
                 <View
@@ -87,9 +87,9 @@ export default class StDetailsInfo extends React.Component<MyProps, MyState> {
                     </View>
                 </View>
                 <DetailVehicleInfo
-                    carNum={carNum}
+                    plateNumber={plateNumber}
                     name={name}
-                    phoneNum={phoneNum}
+                    phone={phone}
                 />
                 <DetailDescription />
                 <DetailTermsButton

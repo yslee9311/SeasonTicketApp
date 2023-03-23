@@ -26,10 +26,10 @@ export default class StExtensionDetails extends React.Component<MyProps, MyState
     render() {
         const {
             label,
-            price,
-            carNum,
+            amount,
+            plateNumber,
             name,
-            phoneNum,
+            phone,
         } = this.props.route.params
         return (
             <View style={{ flex: 1, backgroundColor: colors.white, paddingBottom: 0 }}>
@@ -45,10 +45,10 @@ export default class StExtensionDetails extends React.Component<MyProps, MyState
                 />
                 <StDetailsInfo
                     label={label}
-                    price={price}
-                    carNum={carNum}
+                    amount={amount}
+                    plateNumber={plateNumber}
                     name={name}
-                    phoneNum={phoneNum}
+                    phone={phone}
                 />
                 <BottomButton
                     text={"구매하기"}
