@@ -51,7 +51,7 @@ class StExtension extends React.Component<MyProps, MyState> {
         let { totalInfo } = this.props.context.state
         let extensionList = new Array()
         let waitPayment = await checkShortlyBeforeExpiration(totalInfo)
-        
+
         for (const value of waitPayment) {
             let inputValue = {
                 plateNumber: value.plate_number,
@@ -60,6 +60,8 @@ class StExtension extends React.Component<MyProps, MyState> {
                 label: value.goods,
                 endOn: value.end_on.split(" ")[0],
                 amount: value.amount,
+                uuid: value.uuid,
+                endOnFull: value.end_on,
             }
             extensionList.push(inputValue)
         }

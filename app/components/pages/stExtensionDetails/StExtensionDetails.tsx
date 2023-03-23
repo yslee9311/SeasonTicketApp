@@ -4,9 +4,12 @@ import {
     Platform,
     StatusBar,
     View,
+    Alert,
 } from 'react-native';
+import moment from 'moment';
 
 import colors from '../../../common/values/colors';
+import { putPaymentInfo } from '../../../common/utils/server/putServer'
 
 import HeaderTab from '../../molecules/headerTab';
 import StDetailsInfo from '../../organisms/stExtension/stDetailsInfo';
@@ -22,6 +25,28 @@ export default class StExtensionDetails extends React.Component<MyProps, MyState
     constructor(props: any) {
         super(props);
     }
+
+    purchaseFunc = () => new Promise(async (resolve, reject) => {
+        let { endOnFull, uuid } = this.props.route.params
+        let updateStartOn = endOnFull
+        let updateEndOn = moment(new Date(endOnFull).getTime() + 1000 * 60 * 60 * 24 * 30).format('YYYY-MM-DD HH:mm:ss')
+        const editDate = {
+            start_on: updateStartOn,
+            end_on: updateEndOn,
+        }
+        let boolSuccess = await putPaymentInfo(uuid, editDate)
+        if (boolSuccess) {
+            this.props.navigation.navigate("StPurchaseCompleted", {})
+        } else {
+            Alert.alert(
+                '결제 오류',
+                '결제 중 오류가 발생하였습니다. 처음 화면에서 다시 결제를 진행해주세요.',
+                [
+                    { text: "확인", style: 'cancel', onPress: () => this.props.navigation.popToTop() },
+                ]
+            );
+        }
+    })
 
     render() {
         const {
@@ -56,7 +81,7 @@ export default class StExtensionDetails extends React.Component<MyProps, MyState
                     weight={'Bold'}
                     textColor={colors.white}
                     buttonColor={colors.black}
-                    func={() => this.props.navigation.navigate("StPurchaseCompleted", {})}
+                    func={() => this.purchaseFunc()}
                 />
             </View>
         )
